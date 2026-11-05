@@ -88,6 +88,8 @@ Piemēram, lauka `pacients[316][adrese][iela]` iesūtīšana aizņem atmiņu ar 
 ];
 ```
 
+Kopsavelkot:
+
 ```mermaid
 flowchart TD
     A["Augšupielādē *datnes*"] --> B["Grāmatvedībā pieskaitās buķetes"]
@@ -107,6 +109,70 @@ flowchart TD
 > Tāpēc drošāk ir neizpaust info par serveri (versijas, `phpinfo()`).
 
 ### RCE via stale global state
+
+- **Pieņēmums:** Jaunā pieprasījumā sākam visu no baltas lapas.
+- **Kļūda**: Balto lapu izveido pēc tam, kad sākuma jautājumi apstrādāti.
+- **Problēma**: Datu atserializētājs saglabājis vecu grāmatvedību un apstrādā nepareizos datus.
+
+
+Pēc [Calif raksta](https://calif.io/php2shell/#but-what-about-fpm-or-a-gift-from-an-old-friend):
+
+Atserializētājs uzskaita, kur atrodas. Ja ir iekšā apakšuzdevumā (`level` ir lielāks par 0), tad izmanto apkārtējo info kontekstu.
+
+```php
+/* php_var_unserialize_init(), abbreviated */
+
+if (BG(serialize_lock) || !BG(unserialize).level) {
+    d = emalloc(sizeof(struct php_unserialize_data));
+
+    /* Initialize the reference and destructor lists. */
+    /* ... */
+
+    if (!BG(serialize_lock)) {
+        BG(unserialize).data = d;
+        BG(unserialize).level = 1;
+    }
+} else {
+    d = BG(unserialize).data;
+    ++BG(unserialize).level;
+}
+```
+
+Bet, ja atmiņa beidzas, tad šis stāvoklis netiek satīrīts un nākamais serializētājs no `level` *domā*, ka ir iekšā apakšuzdevumā un izmanto apkārtējo kontekstu. Kaut gan tie dati jau bija atmesti un varbūt atmiņa jau ir pārrakstīta ar ko citu.
+
+Izmantojamība ir atkarīga no koda, bet:
+
+> In phpMyAdmin, a normal `session_start()` loads a Session record that we previously built through HTTP requests. WordPress reaches the same generic decoder through ordinary `maybe_unserialize()` calls. By controlling the memory pressure around those operations, we can let the decoder build useful reference and destructor lists before a later allocation hits `memory_limit`.
+
+```mermaid
+sequenceDiagram
+    actor A as 1. Pieprasījums
+    participant P as PHP strādnieciņš
+    actor B as 2. pieprasījums
+    A->>P: Iesāk pieprasījumu
+    Note over P: Sekmīgi iesāk procesu<br/>Satīra visu veco
+    Note over P: Kaut ko atserializē
+    Note over P: Kļūda, pārtraucam darbu
+    Note over P: Atbrīvojam atmiņu<br/>Atserializētāja stāvoklis saglabājas
+    B->>P: Iesāk jaunu pieprasījumu
+    B->>P: Ielādē datni un prasa ielādes progresu
+    Note over P: Atserializētājs sāk ņemties
+    rect rgb(255, 151, 151)
+        Note over P:  Atserializētājs apmaldās
+        Note over P:  Seko norādei uz atmiņu kur jau ir kas cits
+    end
+    rect rgb(100, 100, 100)
+        Note over P: Nesasniedzam satīrīšanu.
+    end
+```
+
+> [!CAUTION]
+> Šis ir viens piemērs. Netrūkst citu veido, kā sasniegt *veco* stāvokli: https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp
+
+> [!IMPORTANT]
+> Jātrāpa divus secīgus pieprasījumus pa to pašu strādnieku.
+
+Labojums: [satīrīt laicīgāk](https://github.com/php/php-src/commit/3584a98bda0f2c0d367255b046798b0d3a221a19#diff-2b0486443df74cd919c949f33f895eacf97c34b8490e7554e032e770ab11e4d8R505)
 
 ## Hronoloģija
 
