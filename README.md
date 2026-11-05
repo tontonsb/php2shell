@@ -14,7 +14,7 @@ Daudz kas tika izslēgts. Un daudz kas nestrādāja.
 | izmantojamība | noklusējuma konfigurācija <br> neatkarīgi no koda | atkarībā no koda |
 
 > [!NOTE]
-> FrankenPHP, LSAPI — nav zināms.
+> FrankenPHP, LSAPI — nav zināms (ir pamats aizdomām).
 
 ### RCE via OOM corruption
 
@@ -64,14 +64,14 @@ p->h = ZSTR_H(p->key) = h;
 ZVAL_COPY_VALUE(&p->val, pData);
 ```
 
-`key` paliek nesagatavots — kas tur iekšā?
+`p->key` un `p->val` paliek nesagatavoti — kas tur iekšā?
 
-Bet grāmatvedībā (`nNumUsed`, `nNumOfElements`) jau pieskaitīts un satīrītājs ķersies klāt — tur tad arī var notikt nevēlama koda izpilde, ja `p->key` iedalītajā vietā ir palikuši baiti, kurus satīrītājs interpretēs kā kaut ko izpildāmu. (Kāpēc? Kā tur dabūt tādus baitus?)
+Bet grāmatvedībā (`nNumUsed`, `nNumOfElements`) jau pieskaitīts un satīrītājs ķersies klāt — tur tad arī var notikt nevēlama koda izpilde, ja buķetei iedalītajā vietā ir palikuši baiti, kurus satīrītājs interpretēs kā kaut ko izpildāmu. (Kāpēc? Kā tur dabūt tādus baitus?)
 
 **Kā pārsniedz atmiņu?** No [paziņojuma](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w):
 
-- A multipart request without a usable declared content length may pass the initial `post_max_size` check and continue supplying decoded body data. **IZLABOTS**
-- A multipart part can contain an unrestricted number of headers. Representing these headers inside PHP can use substantially more memory than their wire representation, allowing a request within `post_max_size` to exhaust the normal `memory_limit`. **IZLABOTS**
+- A multipart request without a usable declared content length may pass the initial `post_max_size` check and continue supplying decoded body data. [**IZLABOTS**](https://github.com/php/php-src/commit/3584a98bda0f2c0d367255b046798b0d3a221a19#diff-81d659aa9e83177ac08151f99cebf21ab331d22462c72a1039f59947e66f5a35R249-R252)
+- A multipart part can contain an unrestricted number of headers. Representing these headers inside PHP can use substantially more memory than their wire representation, allowing a request within `post_max_size` to exhaust the normal `memory_limit`. [**IZLABOTS**](https://github.com/php/php-src/commit/3584a98bda0f2c0d367255b046798b0d3a221a19#diff-81d659aa9e83177ac08151f99cebf21ab331d22462c72a1039f59947e66f5a35R400-R457)
 - Empty file controls do not count towards `max_file_uploads` but still create the normal file metadata arrays. Nested field names multiply the generated array work.
 
 Piemēram, lauka `pacients[316][adrese][iela]` iesūtīšana aizņem atmiņu ar struktūru:
