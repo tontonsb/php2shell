@@ -174,36 +174,73 @@ sequenceDiagram
 
 Labojums: [satīrīt laicīgāk](https://github.com/php/php-src/commit/3584a98bda0f2c0d367255b046798b0d3a221a19#diff-2b0486443df74cd919c949f33f895eacf97c34b8490e7554e032e770ab11e4d8R505)
 
+### Vēl viena ievainojamība pēc labojumiem????
+
+https://www.php.net/archive/2026.php#2026-10-23-1 
+
 ## Hronoloģija
 
-## Ko vajadzēja darīt?
+Publiski redzamā:
 
-## Iespējas atjaunot
-
-- veci projekti
-
-- sarežģīti projekti
-
-- debian / ubuntu
-- redhat / centos
-- docker
-
-
-## Kā būt drošākiem
-
-kā pasargāties?
-- izolēti serveri
-- readonly konteineri, datubāzes pieslēgumi
-- apparmor
-
-
-izolēts
-ierobežots
-readonly
+- 20. oktobris: baumas
+- 20. oktobrī 19:32 [paziņojums](https://externals.io/message/132883), arī [general listē](https://news-web.php.net/php.general/start/328870): rīt 17:00 (14:00 UTC) gatavojamies
+- tiek pārpublicēts redīsā, čivēklī u.c.
+- Izlaists [video](https://x.com/k_firsov/status/2112641845926989944)
+- 21. oktobrī 05:21 [Gina](https://phpc.social/@Girgias/117476510850918355):
+> if you can afford turning of a server for a day, that might be the most sensible thing to do
+- 21. oktobrī 10:41 pampāļi chainguard publicē labojumu
+- 21. oktobrī 14:06 CERT brīdina gatavoties uz 17:00
+- 21. oktobrī ap 17:00 [publicē labojumus un iztirzājumus](https://www.php.net/archive/2026.php#2026-10-21-5)
 
 ## Ko tas saka par PHP?
 
+- Izstrādātāji nopietni izturas pret drošību
+- Lietotāji arī
+- PHP ir interneta darba zirgs
 
-citi arī bija ievainojami...
+Citas ievainojamības šais dienās:
 
+![Drošības nedarbu pārskats 20.–21. oktobrī: eMudhra sertifikāti, QUIC akordeoni, GitLab 10.0 CVSS, PHP2Shell, Node2Shell, Bind9, Cisco.](Drošības nedarbi_ 20.–21. oktobris 2026.png)
 
+## Ko vajadzēja darīt?
+
+1. Redzēt brīdinājumu, sagatavoties
+2. Izvērtēt riskus un variantus, varbūt atslēgt serverus
+3. 21. oktobrī 17:00 iepazīties ar publicētajiem paziņojumiem
+4. Apdeitoties vai domāt citus risinājumus
+5. Izmantot rezerves variantus apdeitošanai...
+
+## Grūtības atjaunot?
+
+- veci projekti, PHP zem 8.2, īpaši zem 7.4
+- debian / ubuntu
+- redhat / centos --- https://phpc.social/@thephpf/117478036935385696
+- docker
+
+### Ja nu es nevaru????
+
+Lasi paziņojumus [CVE-2026-109618](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w) & [CVE-2026-109619](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp)!
+
+06.11.2026. vēl nestrādā
+
+- rindapiearsta.lv https://www.vmnvd.gov.lv/lv/rindapiearstalv
+- https://x.com/IeM_PMLP/status/2114732557904605611
+- https://personvardi.pmlp.gov.lv ??
+
+Un hmm?
+
+- https://termini.gov.lv ?? 
+- https://likumi.lv
+
+## Kā būt drošākiem
+
+- izolēti serveri
+- readonly konteineri, readonly datubāzes pieslēgumi
+- apparmor utml — https://cyberplace.social/@GossiTheDog/117475921964397804
+
+## Resursi
+
+- Paziņojumi: [CVE-2026-109618](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w) & [CVE-2026-109619](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp)
+- [Labojums](https://github.com/php/php-src/commit/3584a98bda0f2c0d367255b046798b0d3a221a19)
+- [PHP fonda iztirzājums](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/)
+- [Atradēju iztirzājums](https://calif.io/php2shell/)
