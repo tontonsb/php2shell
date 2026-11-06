@@ -231,6 +231,7 @@ Un hmm?
 
 - https://termini.gov.lv ?? 
 - https://likumi.lv
+- https://www.lsm.lv --- https://x.com/DavisVilums/status/2112965094338375895 
 
 ## Kā būt drošākiem
 
