@@ -182,15 +182,15 @@ https://www.php.net/archive/2026.php#2026-10-23-1
 
 Publiski redzamā:
 
-- 20. oktobris: baumas
-- 20. oktobrī 19:32 [paziņojums](https://externals.io/message/132883), arī [general listē](https://news-web.php.net/php.general/start/328870): rīt 17:00 (14:00 UTC) gatavojamies
+- 20.okt: baumas
+- 20.okt 19:32 [paziņojums](https://externals.io/message/132883), arī [general listē](https://news-web.php.net/php.general/start/328870): rīt 17:00 (14:00 UTC) gatavojamies
 - tiek pārpublicēts redīsā, čivēklī u.c.
 - Izlaists [video](https://x.com/k_firsov/status/2112641845926989944)
-- 21. oktobrī 05:21 [Gina](https://phpc.social/@Girgias/117476510850918355):
+- 21.okt 05:21 [Gina](https://phpc.social/@Girgias/117476510850918355):
 > if you can afford turning of a server for a day, that might be the most sensible thing to do
-- 21. oktobrī 10:41 pampāļi chainguard publicē labojumu
-- 21. oktobrī 14:06 CERT brīdina gatavoties uz 17:00
-- 21. oktobrī ap 17:00 [publicē labojumus un iztirzājumus](https://www.php.net/archive/2026.php#2026-10-21-5)
+- 21.okt 10:41 pampāļi chainguard publicē labojumu
+- 21.okt 14:06 CERT brīdina gatavoties uz 17:00
+- 21.okt ap 17:00 [publicē labojumus un iztirzājumus](https://www.php.net/archive/2026.php#2026-10-21-5)
 
 ## Ko tas saka par PHP?
 
@@ -206,7 +206,7 @@ Citas ievainojamības šais dienās:
 
 1. Redzēt brīdinājumu, sagatavoties
 2. Izvērtēt riskus un variantus, varbūt atslēgt serverus
-3. 21. oktobrī 17:00 iepazīties ar publicētajiem paziņojumiem
+3. 21.okt 17:00 iepazīties ar publicētajiem paziņojumiem
 4. Apdeitoties vai domāt citus risinājumus
 5. Izmantot rezerves variantus apdeitošanai...
 
