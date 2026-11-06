@@ -212,7 +212,7 @@ Citas ievainojamības šais dienās:
 
 ## Grūtības atjaunot?
 
-- veci projekti, PHP zem 8.2, īpaši zem 7.4
+- veci projekti, PHP zem 8.2, īpaši zem 7.4 --- https://www.php.net/supported-versions.php
 - debian / ubuntu
 - redhat / centos --- https://phpc.social/@thephpf/117478036935385696
 - docker
