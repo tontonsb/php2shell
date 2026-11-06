@@ -200,7 +200,7 @@ Publiski redzamā:
 
 Citas ievainojamības šais dienās:
 
-![Drošības nedarbu pārskats 20.–21. oktobrī: eMudhra sertifikāti, QUIC akordeoni, GitLab 10.0 CVSS, PHP2Shell, Node2Shell, Bind9, Cisco.](Drošības nedarbi_ 20.–21. oktobris 2026.png)
+![Drošības nedarbu pārskats 20.–21. oktobrī: eMudhra sertifikāti, QUIC akordeoni, GitLab 10.0 CVSS, PHP2Shell, Node2Shell, Bind9, Cisco.](./Drošības%20nedarbi_%2020.–21.%20oktobris%202026.pngDrošības nedarbi_ 20.–21. oktobris 2026.png)
 
 ## Ko vajadzēja darīt?
 
