@@ -1,6 +1,6 @@
 # php2shell
 
-2026. gada 21. novembrī tika [izziņotas](https://www.php.net/archive/2026.php#2026-10-21-5)
+2026. gada 21. oktobrī tika [izziņotas](https://www.php.net/archive/2026.php#2026-10-21-5)
 PHP ievainojamības un izlaisti to labojumi.
 
 Daudz kas tika izslēgts. Un daudz kas nestrādāja.
